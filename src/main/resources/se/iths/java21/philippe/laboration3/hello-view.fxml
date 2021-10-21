@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<BorderPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.iths.java21.philippe.laboration3.HelloController">
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="File">
+                    <MenuItem onAction="#onSave" text="Save" />
+                    <MenuItem onAction="#onExit" text="Exit" />
+                </Menu>
+            </MenuBar>
+
+            <ToolBar>
+                <HBox alignment="CENTER" spacing="5">
+               <MenuBar>
+                 <menus>
+                   <Menu mnemonicParsing="false" text="Shapes">
+                     <items>
+                       <MenuItem mnemonicParsing="false">
+                              <graphic>
+                                 <Circle fill="WHITE" radius="50.0" stroke="BLACK" strokeType="INSIDE" />
+                              </graphic>
+                           </MenuItem>
+                           <MenuItem mnemonicParsing="false">
+                              <graphic>
+                                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" width="70.0" />
+                              </graphic>
+                           </MenuItem>
+                     </items>
+                   </Menu>
+                   <Menu mnemonicParsing="false" text="Edit">
+                     <items>
+                       <MenuItem mnemonicParsing="false" text="Delete" />
+                     </items>
+                   </Menu>
+                 </menus>
+               </MenuBar>
+                    <TextField fx:id="shapeSize" text="18" />
+                    <ColorPicker fx:id="colorPicker" />
+                    <CheckBox fx:id="eraser" text="Eraser" />
+                </HBox>
+            </ToolBar>
+        </VBox>
+    </top>
+
+    <center>
+        <Canvas fx:id="canvas" height="600" onMouseClicked="#canvasClicked" onMouseDragged="#draggedOnCanvas" width="600" />
+    </center>
+</BorderPane>
