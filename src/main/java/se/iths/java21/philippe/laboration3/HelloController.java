@@ -7,6 +7,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 
 import javax.imageio.ImageIO;
@@ -47,6 +48,7 @@ public class HelloController {
 
     public void initialize() {
         model = new Model();
+        model.setColor(Color.BLACK);
         canvas.widthProperty().addListener(observable -> draw());
         canvas.heightProperty().addListener(observable -> draw());
         colorPicker.valueProperty().bindBidirectional(model.colorProperty());
@@ -85,23 +87,7 @@ public class HelloController {
 
     }
 
-//    private void paintAction(GraphicsContext context, MouseEvent e) {
-//        double size = Double.parseDouble(shapeSize.getText());
-//        double x = e.getX() - size / 2;
-//        double y = e.getY() - size / 2;
-//
-//        if (eraser.isSelected()) {
-//            context.clearRect(x, y, size, size); //Suddigum, kanske inte behövs till labb.
-//        } else {
-//            context.setFill(colorPicker.getValue());
-//            context.fillOval(x, y, size, size);
-//        }
-//    }
 
-//    public void draggedOnCanvas() {
-//        var context = canvas.getGraphicsContext2D();
-//        canvas.setOnMouseDragged(e -> paintAction(context, e));
-//    }
 
     //För att ta bort? eller använda till att justera shapes?
 //    public void clickDelete(ActionEvent event) {
