@@ -20,24 +20,17 @@ public class HelloController {
 
     @FXML
     private Canvas canvas;
-
     @FXML
     private ColorPicker colorPicker;
+    @FXML
+    public RadioButton rectangleRadioButton;
+    @FXML
+    public RadioButton circleRadioButton;
+    @FXML
+    public RadioButton selectRadioButton;
+    @FXML
+    private Spinner<Integer> sizeSpinner;
 
-    @FXML
-    private Button rectangleButton;
-    @FXML
-    private Button circleButton;
-    @FXML
-    private Button lineButton;
-    @FXML
-    private Button pointButton;
-
-    @FXML
-    private Spinner<Integer> shapeSize;
-
-    @FXML
-    private CheckBox eraser;
 
     public HelloController() {
     }
@@ -48,20 +41,17 @@ public class HelloController {
 
     public void initialize() {
         model = new Model();
-        model.setColor(Color.BLACK);
         canvas.widthProperty().addListener(observable -> draw());
         canvas.heightProperty().addListener(observable -> draw());
         colorPicker.valueProperty().bindBidirectional(model.colorProperty());
-        model.size.bindBidirectional(shapeSize.getValueFactory().valueProperty());
+        model.size.bindBidirectional(sizeSpinner.getValueFactory().valueProperty());
     }
 
     private void draw() {
         var gc = canvas.getGraphicsContext2D();
-        //double size = Double.parseDouble(shapeSize.getText());
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for (var shape : model.shapes) {
-            gc.setFill(shape.getColor());
-            gc.fillOval(shape.getX(), shape.getY(), model.getSize(), model.getSize());
+            shape.draw(gc);
         }
     }
 
@@ -80,18 +70,15 @@ public class HelloController {
     }
 
     public void canvasClicked(MouseEvent event) {
-//        var context = canvas.getGraphicsContext2D();
-//        canvas.setOnMousePressed(e -> paintAction(context, e));
-        model.shapes.add(new Shape(model.getColor(), event.getX(), event.getY()));
+        if (rectangleRadioButton.isSelected())
+            model.shapes.add(Shapes.rectangleOf(model.getColor(), event.getX(), event.getY(), model.getSize()));
+        else if (circleRadioButton.isSelected())
+            model.shapes.add(Shapes.circleOf(event.getX(), event.getY(), model.getSize(), model.getColor()));
+        else if (event.isAltDown()){
+            model.shapes.stream()
+                    .filter(shape -> shape.isInside(event.getX(), event.getY()))
+                    .findFirst().ifPresent(shape -> shape.setColor(Color.RED));
+        }
         draw();
-
     }
-
-
-
-    //För att ta bort? eller använda till att justera shapes?
-//    public void clickDelete(ActionEvent event) {
-//        personView.getItems().remove(personView.getSelectionModel().getSelectedItem());
-//    }
-
 }

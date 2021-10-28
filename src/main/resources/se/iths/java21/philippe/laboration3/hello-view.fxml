@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
+<?import javafx.scene.control.ToggleGroup?>
 
 <?import se.iths.java21.philippe.laboration3.ResizableCanvas?>
 <BorderPane prefHeight="600.0" prefWidth="600.0"
@@ -19,18 +20,17 @@
             </MenuBar>
             <ToolBar>
                 <HBox alignment="CENTER" spacing="5">
-                    <Button fx:id="rectangleButton" text="Rectangle" />
-                    <Button fx:id="circleButton" text="Circle"/>
-                    <Button fx:id="lineButton" text="Line"/>
-                    <Button fx:id="pointButton" text="Point"/>
-                    <Spinner fx:id="shapeSize" min="12" amountToStepBy="2" max="80" prefWidth="70" />
+                    <RadioButton fx:id="rectangleRadioButton" text="Rectangle"/>
+                    <RadioButton fx:id="circleRadioButton" text="Circle" />
+                    <Spinner fx:id="sizeSpinner" min="10" amountToStepBy="2" max="80" prefWidth="70" editable="true"/>
                     <ColorPicker fx:id="colorPicker" />
+                    <RadioButton fx:id="selectRadioButton" text="Select Mode" />
                 </HBox>
             </ToolBar>
         </VBox>
     </top>
     <center>
-        <StackPane prefWidth="600" prefHeight="600">
+        <StackPane prefWidth="200" prefHeight="200">
             <ResizableCanvas fx:id="canvas" onMouseClicked="#canvasClicked" />
         </StackPane>
     </center>

@@ -14,7 +14,7 @@ public class Model {
     private final StringProperty text;
     private final BooleanProperty inColor;
     private final ObjectProperty<Color> color;
-    ObjectProperty<Integer> size;
+    public final ObjectProperty<Integer> size;
 
 
     ObservableList<String> observableList =
@@ -25,8 +25,8 @@ public class Model {
     public Model() {
         this.text = new SimpleStringProperty();
         this.inColor = new SimpleBooleanProperty();
-        this.color = new SimpleObjectProperty<>();
-        this.size = new SimpleObjectProperty(1);
+        this.color = new SimpleObjectProperty<>(Color.BLACK);
+        this.size = new SimpleObjectProperty<>(1);
 
     }
 
