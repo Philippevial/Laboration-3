@@ -4,11 +4,11 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import se.iths.java21.philippe.laboration3.Shape;
 
-public final class Rectangle extends Shape {
+public final class Square extends Shape {
 
     private final double size;
 
-    public Rectangle(Color color, double x, double y, double size) {
+    public Square(Color color, double x, double y, double size) {
         super(color, x, y);
         this.size = size;
     }
@@ -22,6 +22,10 @@ public final class Rectangle extends Shape {
 
     @Override
     public boolean isInside(double x, double y) {
-        return false;
+        double dx = x - getX();
+        double dy = y - getY();
+
+        double distanceFromCircleCenterSquared = dx * dx + dy * dy;
+        return distanceFromCircleCenterSquared < size*size;
     }
 }

@@ -23,7 +23,7 @@ public class HelloController {
     @FXML
     private ColorPicker colorPicker;
     @FXML
-    public RadioButton rectangleRadioButton;
+    public RadioButton squareButton;
     @FXML
     public RadioButton circleRadioButton;
     @FXML
@@ -41,8 +41,14 @@ public class HelloController {
 
     public void initialize() {
         model = new Model();
+        ToggleGroup group = new ToggleGroup();
+        circleRadioButton.setToggleGroup(group);
+        squareButton.setToggleGroup(group);
+        selectRadioButton.setToggleGroup(group);
+
         canvas.widthProperty().addListener(observable -> draw());
         canvas.heightProperty().addListener(observable -> draw());
+
         colorPicker.valueProperty().bindBidirectional(model.colorProperty());
         model.size.bindBidirectional(sizeSpinner.getValueFactory().valueProperty());
     }
@@ -70,14 +76,16 @@ public class HelloController {
     }
 
     public void canvasClicked(MouseEvent event) {
-        if (rectangleRadioButton.isSelected())
-            model.shapes.add(Shapes.rectangleOf(model.getColor(), event.getX(), event.getY(), model.getSize()));
-        else if (circleRadioButton.isSelected())
-            model.shapes.add(Shapes.circleOf(event.getX(), event.getY(), model.getSize(), model.getColor()));
-        else if (event.isAltDown()){
+        if(selectRadioButton.isSelected()) {
             model.shapes.stream()
                     .filter(shape -> shape.isInside(event.getX(), event.getY()))
                     .findFirst().ifPresent(shape -> shape.setColor(Color.RED));
+        }
+        if (squareButton.isSelected()) {
+            model.shapes.add(Shapes.squareOf(model.getColor(), event.getX(), event.getY(), model.getSize()));
+        }
+        else if (circleRadioButton.isSelected()) {
+            model.shapes.add(Shapes.circleOf(event.getX(), event.getY(), model.getSize(), model.getColor()));
         }
         draw();
     }

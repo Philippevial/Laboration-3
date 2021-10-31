@@ -20,6 +20,10 @@ public class Circle extends Shape {
 
     @Override
     public boolean isInside(double x, double y) {
-        return false;
+        double dx = x - getX();
+        double dy = y - getY();
+
+        double distanceFromCircleCenterSquared = dx * dx + dy * dy;
+        return distanceFromCircleCenterSquared < radius*radius;
     }
 }
