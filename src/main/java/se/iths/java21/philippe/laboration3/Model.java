@@ -5,7 +5,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 
@@ -18,7 +20,8 @@ public class Model {
     ObservableList<String> observableList =
             FXCollections.observableArrayList();
 
-    List<Shape> shapes = new ArrayList<>();
+    //List<Shape> shapes = new ArrayList<>();
+    Deque<Shape> shapes = new ArrayDeque<>();
 
     public Model() {
 

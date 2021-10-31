@@ -91,6 +91,18 @@ public class HelloController {
         draw();
     }
 
+    private  void undo() {
+        if(model.shapes.isEmpty())
+            return;
+        model.shapes.removeLast();
+        draw();
+    }
+
+    public void undoButtonPressed(MouseEvent event) {
+        if(undoButton.isPressed())
+            undo();
+    }
+
 //    private void pushUndo() {
 //        // Restore the canvas scale to 1 so I can get the original scale image
 //        canvas.setScaleX(1);

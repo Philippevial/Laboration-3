@@ -25,7 +25,7 @@
                     <RadioButton fx:id="selectRadioButton" text="Select Mode" />
                     <Spinner fx:id="sizeSpinner" min="10" amountToStepBy="2" max="100" prefWidth="70" editable="true"/>
                     <ColorPicker fx:id="colorPicker" />
-                    <Button fx:id="undoButton" text="Undo"/>
+                    <Button fx:id="undoButton" text="Undo" onMousePressed="#pressUndoButton"/>
                 </HBox>
             </ToolBar>
         </VBox>
