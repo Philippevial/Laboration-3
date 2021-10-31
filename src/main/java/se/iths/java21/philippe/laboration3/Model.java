@@ -11,8 +11,6 @@ import java.util.List;
 
 public class Model {
 
-    private final StringProperty text;
-    private final BooleanProperty inColor;
     private final ObjectProperty<Color> color;
     public final ObjectProperty<Integer> size;
 
@@ -23,8 +21,7 @@ public class Model {
     List<Shape> shapes = new ArrayList<>();
 
     public Model() {
-        this.text = new SimpleStringProperty();
-        this.inColor = new SimpleBooleanProperty();
+
         this.color = new SimpleObjectProperty<>(Color.BLACK);
         this.size = new SimpleObjectProperty<>(1);
 

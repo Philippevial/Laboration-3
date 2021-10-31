@@ -14,4 +14,5 @@ public class Shapes {
     public static Shape squareOf(Color color, double x, double y, double size) {
         return new Square(color,x,y,size);
     }
+
 }

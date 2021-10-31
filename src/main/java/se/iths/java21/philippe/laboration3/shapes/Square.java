@@ -9,7 +9,7 @@ public final class Square extends Shape {
     private final double size;
 
     public Square(Color color, double x, double y, double size) {
-        super(color, x, y, size);
+        super(color, x, y);
         this.size = size;
     }
 

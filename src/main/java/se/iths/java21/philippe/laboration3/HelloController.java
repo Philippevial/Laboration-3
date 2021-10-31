@@ -7,7 +7,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 
 
 import javax.imageio.ImageIO;
@@ -17,7 +16,8 @@ import java.io.File;
 public class HelloController {
 
     Model model;
-
+    @FXML
+    private Button undoButton;
     @FXML
     private Canvas canvas;
     @FXML
@@ -58,6 +58,7 @@ public class HelloController {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for (var shape : model.shapes) {
             shape.draw(gc);
+
         }
     }
 
@@ -76,17 +77,35 @@ public class HelloController {
     }
 
     public void canvasClicked(MouseEvent event) {
-        if(selectRadioButton.isSelected()) {
+        if (selectRadioButton.isSelected()) {
             model.shapes.stream()
                     .filter(shape -> shape.isInside(event.getX(), event.getY()))
-                    .findFirst().ifPresent(shape -> shape.setColor(model.getColor()));
+                    .reduce((first, second) -> second)
+                    .ifPresent(shape -> shape.setColor(model.getColor()));
         }
         if (squareButton.isSelected()) {
             model.shapes.add(Shapes.squareOf(model.getColor(), event.getX(), event.getY(), model.getSize()));
-        }
-        else if (circleRadioButton.isSelected()) {
+        } else if (circleRadioButton.isSelected()) {
             model.shapes.add(Shapes.circleOf(event.getX(), event.getY(), model.getSize(), model.getColor()));
         }
         draw();
     }
+
+//    private void pushUndo() {
+//        // Restore the canvas scale to 1 so I can get the original scale image
+//        canvas.setScaleX(1);
+//        canvas.setScaleY(1);
+//
+//        // Get the image with the snapshot method and store it on the undo stack
+//        Image snapshot = canvas.snapshot(null, null);
+//        undoStack.push(snapshot);
+//
+//    }
+//
+//    private void undo() {
+//        if (!undoStack.empty()) {
+//            Image undoImage = undoStack.pop();
+//            canvas.getGraphicsContext2D().drawImage(undoImage, 0, 0);
+//        }
+//    }
 }
