@@ -23,7 +23,7 @@
                     <RadioButton fx:id="squareButton" text="Square"/>
                     <RadioButton fx:id="circleRadioButton" text="Circle" />
                     <RadioButton fx:id="selectRadioButton" text="Select Mode" />
-                    <Spinner fx:id="sizeSpinner" min="10" amountToStepBy="2" max="80" prefWidth="70" editable="true"/>
+                    <Spinner fx:id="sizeSpinner" min="10" amountToStepBy="2" max="100" prefWidth="70" editable="true"/>
                     <ColorPicker fx:id="colorPicker" />
                 </HBox>
             </ToolBar>

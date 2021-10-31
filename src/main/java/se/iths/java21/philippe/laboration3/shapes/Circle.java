@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 import se.iths.java21.philippe.laboration3.Shape;
 
 public class Circle extends Shape {
-    private double radius;
+    private final double radius;
 
     public Circle(Color color, double x, double y, double radius) {
         super(color, x, y);

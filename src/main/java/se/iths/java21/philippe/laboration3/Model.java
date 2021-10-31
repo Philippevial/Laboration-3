@@ -54,29 +54,7 @@ public class Model {
         this.color.set(color);
     }
 
-    public boolean isInColor() {
-        return inColor.get();
-    }
 
-    public BooleanProperty inColorProperty() {
-        return inColor;
-    }
-
-    public void setInColor(boolean inColor) {
-        this.inColor.set(inColor);
-    }
-
-    public String getText() {
-        return text.getValue();
-    }
-
-    public void setText(String text) {
-        this.text.setValue(text);
-    }
-
-    public StringProperty textProperty() {
-        return text;
-    }
 
 
 }

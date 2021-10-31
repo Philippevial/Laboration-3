@@ -79,7 +79,7 @@ public class HelloController {
         if(selectRadioButton.isSelected()) {
             model.shapes.stream()
                     .filter(shape -> shape.isInside(event.getX(), event.getY()))
-                    .findFirst().ifPresent(shape -> shape.setColor(Color.RED));
+                    .findFirst().ifPresent(shape -> shape.setColor(model.getColor()));
         }
         if (squareButton.isSelected()) {
             model.shapes.add(Shapes.squareOf(model.getColor(), event.getX(), event.getY(), model.getSize()));

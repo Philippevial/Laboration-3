@@ -7,7 +7,6 @@ import se.iths.java21.philippe.laboration3.shapes.Square;
 
 public class Shapes {
 
-    //Factory metod, tillverka objekt av den här typen.
     public static Shape circleOf(double x, double y, double radius, Color color) {
         return new Circle(color, x, y, radius);
     }
