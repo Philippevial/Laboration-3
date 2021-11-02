@@ -26,6 +26,7 @@
                     <Spinner fx:id="sizeSpinner" min="10" amountToStepBy="2" max="100" prefWidth="70" editable="true"/>
                     <ColorPicker fx:id="colorPicker" />
                     <Button fx:id="undoButton" text="Undo" onMousePressed="#undoButtonPressed"/>
+                    <Button fx:id="redoButton" text="Redo" onMousePressed="#redoButtonPressed"/>
                 </HBox>
             </ToolBar>
         </VBox>

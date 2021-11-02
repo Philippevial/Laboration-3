@@ -5,10 +5,10 @@ import javafx.scene.paint.Color;
 import se.iths.java21.philippe.laboration3.Shape;
 
 public class Circle extends Shape {
-    private final double radius;
+    private double radius;
 
     public Circle(Color color, double x, double y, double radius) {
-        super(color, x, y);
+        super(color, x, y, radius);
         this.radius = radius;
     }
 
@@ -25,5 +25,10 @@ public class Circle extends Shape {
 
         double distanceFromCircleCenterSquared = dx * dx + dy * dy;
         return distanceFromCircleCenterSquared < radius*radius;
+    }
+
+    @Override
+    public void setSize(double radius) {
+        this.radius = radius;
     }
 }

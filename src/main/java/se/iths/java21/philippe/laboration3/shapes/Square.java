@@ -6,10 +6,10 @@ import se.iths.java21.philippe.laboration3.Shape;
 
 public final class Square extends Shape {
 
-    private final double size;
+    private double size;
 
     public Square(Color color, double x, double y, double size) {
-        super(color, x, y);
+        super(color, x, y, size);
         this.size = size;
     }
 
@@ -27,5 +27,10 @@ public final class Square extends Shape {
 
         double distanceFromCircleCenterSquared = dx * dx + dy * dy;
         return distanceFromCircleCenterSquared < size*size;
+    }
+
+    @Override
+    public void setSize(double size) {
+        this.size = size;
     }
 }

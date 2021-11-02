@@ -20,14 +20,12 @@ public class Model {
     ObservableList<String> observableList =
             FXCollections.observableArrayList();
 
-    //List<Shape> shapes = new ArrayList<>();
     Deque<Shape> shapes = new ArrayDeque<>();
+    Deque<Shape> shapesBackup = new ArrayDeque<>();
 
     public Model() {
-
         this.color = new SimpleObjectProperty<>(Color.BLACK);
         this.size = new SimpleObjectProperty<>(1);
-
     }
 
     public Color getColor() {
@@ -53,8 +51,5 @@ public class Model {
     public void setColor(Color color) {
         this.color.set(color);
     }
-
-
-
 
 }

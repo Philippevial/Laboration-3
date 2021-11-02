@@ -17,6 +17,8 @@ public class HelloController {
 
     Model model;
     @FXML
+    public Button redoButton;
+    @FXML
     private Button undoButton;
     @FXML
     private Canvas canvas;
@@ -82,6 +84,10 @@ public class HelloController {
                     .filter(shape -> shape.isInside(event.getX(), event.getY()))
                     .reduce((first, second) -> second)
                     .ifPresent(shape -> shape.setColor(model.getColor()));
+            model.shapes.stream()
+                    .filter(shape -> shape.isInside(event.getX(), event.getY()))
+                    .reduce((first, second) -> second)
+                    .ifPresent(shape -> shape.setSize(sizeSpinner.getValue()));
         }
         if (squareButton.isSelected()) {
             model.shapes.add(Shapes.squareOf(model.getColor(), event.getX(), event.getY(), model.getSize()));
@@ -91,7 +97,17 @@ public class HelloController {
         draw();
     }
 
+    private void redo() {
+        if(model.shapesBackup.isEmpty()) {
+            return;
+        }
+        model.shapes.add(model.shapesBackup.getLast());
+        draw();
+    }
     private  void undo() {
+        var lastRemoved = model.shapes.getLast();
+        model.shapesBackup.add(lastRemoved);
+
         if(model.shapes.isEmpty())
             return;
         model.shapes.removeLast();
@@ -103,21 +119,8 @@ public class HelloController {
             undo();
     }
 
-//    private void pushUndo() {
-//        // Restore the canvas scale to 1 so I can get the original scale image
-//        canvas.setScaleX(1);
-//        canvas.setScaleY(1);
-//
-//        // Get the image with the snapshot method and store it on the undo stack
-//        Image snapshot = canvas.snapshot(null, null);
-//        undoStack.push(snapshot);
-//
-//    }
-//
-//    private void undo() {
-//        if (!undoStack.empty()) {
-//            Image undoImage = undoStack.pop();
-//            canvas.getGraphicsContext2D().drawImage(undoImage, 0, 0);
-//        }
-//    }
+    public void redoButtonPressed(MouseEvent event) {
+        if(redoButton.isPressed())
+            redo();
+    }
 }

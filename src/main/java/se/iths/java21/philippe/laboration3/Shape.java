@@ -7,13 +7,14 @@ public abstract class Shape {
     private Color color;
     private final double x;
     private final double y;
+    private double size;
 
-    public Shape(Color color, double x, double y) {
+    public Shape(Color color, double x, double y, double size) {
         this.color = color;
         this.x = x;
         this.y = y;
+        this.size = size;
     }
-
 
     public abstract void draw(GraphicsContext graphicsContext);
 
@@ -35,5 +36,7 @@ public abstract class Shape {
         return y;
     }
 
+
+    public abstract void setSize(double size);
 
 }
