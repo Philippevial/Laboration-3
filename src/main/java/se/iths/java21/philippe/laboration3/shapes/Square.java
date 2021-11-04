@@ -13,6 +13,10 @@ public final class Square extends Shape {
         this.size = size;
     }
 
+    public Square(Shape shape) {
+        super(shape);
+    }
+
     @Override
     public void draw(GraphicsContext graphicsContext) {
         double halfSize = size * 0.5;
@@ -21,16 +25,34 @@ public final class Square extends Shape {
     }
 
     @Override
-    public boolean isInside(double x, double y) {
-        double dx = x - getX();
-        double dy = y - getY();
+    public String drawSVG() {
+        String convertColor = "#" + getColor().toString().substring(2, 10);
 
-        double distanceFromCircleCenterSquared = dx * dx + dy * dy;
-        return distanceFromCircleCenterSquared < size*size;
+        return "<rect x=\"" + (getX() - getSize()) + "\" " +
+                "y=\"" + (getY() - getSize()) + "\" " +
+                "width=\"" + (2 * getSize()) + "\" " +
+                "height=\"" + (2* getSize()) + "\" " +
+                "fill=\"" + convertColor + "\" />";
+    }
+
+    @Override
+    public boolean isInside(double mouseX, double mouseY) {
+        double leftX = getX() - size;
+        double topY = getY() - size;
+
+        return mouseX >= leftX &&
+                mouseX <= leftX + 2 * size &&
+                mouseY >= topY &&
+                mouseY <= topY + 2 * size;
     }
 
     @Override
     public void setSize(double size) {
         this.size = size;
+    }
+
+    @Override
+    public String toString() {
+        return "Square " + super.getColor();
     }
 }

@@ -9,7 +9,7 @@
 <?import se.iths.java21.philippe.laboration3.ResizableCanvas?>
 <BorderPane prefHeight="600.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="se.iths.java21.philippe.laboration3.HelloController">
+            fx:controller="se.iths.java21.philippe.laboration3.PaintController">
     <top>
         <VBox>
             <MenuBar>
@@ -25,8 +25,8 @@
                     <RadioButton fx:id="selectRadioButton" text="Select Mode" />
                     <Spinner fx:id="sizeSpinner" min="10" amountToStepBy="2" max="100" prefWidth="70" editable="true"/>
                     <ColorPicker fx:id="colorPicker" />
-                    <Button fx:id="undoButton" text="Undo" onMousePressed="#undoButtonPressed"/>
-                    <Button fx:id="redoButton" text="Redo" onMousePressed="#redoButtonPressed"/>
+                    <Button fx:id="undoButton" text="Undo" onMousePressed="#undo"/>
+                    <Button fx:id="redoButton" text="Redo" onMousePressed="#redo"/>
                 </HBox>
             </ToolBar>
         </VBox>

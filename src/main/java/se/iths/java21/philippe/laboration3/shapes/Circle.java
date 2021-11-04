@@ -12,11 +12,26 @@ public class Circle extends Shape {
         this.radius = radius;
     }
 
+    public Circle(Shape shape) {
+        super(shape);
+    }
+
     @Override
     public void draw(GraphicsContext graphicsContext) {
         graphicsContext.setFill(this.getColor());
-        graphicsContext.fillOval(getX()-radius,getY()-radius,2*radius,2*radius);
+        graphicsContext.fillOval(getX() - radius, getY() - radius, 2 * radius, 2 * radius);
     }
+
+    @Override
+    public String drawSVG() {
+        String convertColor = "#" + getColor().toString().substring(2, 10);
+
+        return "<circle cx=\"" + getX() + "\" " +
+                "cy=\"" + getY() + "\" " +
+                "r=\"" + getSize() + "\" " +
+                "fill=\"" + convertColor + "\" />";
+    }
+
 
     @Override
     public boolean isInside(double x, double y) {
@@ -24,11 +39,17 @@ public class Circle extends Shape {
         double dy = y - getY();
 
         double distanceFromCircleCenterSquared = dx * dx + dy * dy;
-        return distanceFromCircleCenterSquared < radius*radius;
+        return distanceFromCircleCenterSquared < radius * radius;
     }
 
     @Override
     public void setSize(double radius) {
         this.radius = radius;
     }
+
+    @Override
+    public String toString() {
+        return "Circle " + super.getColor();
+    }
+
 }

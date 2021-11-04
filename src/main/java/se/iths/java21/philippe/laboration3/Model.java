@@ -4,11 +4,10 @@ import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
+import se.iths.java21.philippe.laboration3.shapes.Circle;
+import se.iths.java21.philippe.laboration3.shapes.Square;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 
 public class Model {
@@ -16,16 +15,18 @@ public class Model {
     private final ObjectProperty<Color> color;
     public final ObjectProperty<Integer> size;
 
+    ObservableList<Shape> shapes;
 
-    ObservableList<String> observableList =
-            FXCollections.observableArrayList();
+    Deque<ObservableList<Shape>> redo;
+    Deque<ObservableList<Shape>> undo;
 
-    Deque<Shape> shapes = new ArrayDeque<>();
-    Deque<Shape> shapesBackup = new ArrayDeque<>();
 
     public Model() {
         this.color = new SimpleObjectProperty<>(Color.BLACK);
         this.size = new SimpleObjectProperty<>(1);
+        this.shapes = FXCollections.observableArrayList();
+        this.undo = new ArrayDeque<>();
+        this.redo = new ArrayDeque<>();
     }
 
     public Color getColor() {
@@ -36,20 +37,20 @@ public class Model {
         return size.get();
     }
 
-    public ObjectProperty<Integer> sizeProperty() {
-        return size;
-    }
-
-    public void setSize(Integer size) {
-        this.size.set(size);
-    }
-
     public ObjectProperty<Color> colorProperty() {
         return color;
     }
 
-    public void setColor(Color color) {
-        this.color.set(color);
-    }
 
+    public ObservableList<Shape> getTempList() {
+        ObservableList<Shape> tempList = FXCollections.observableArrayList();
+
+        for (Shape shape : shapes) {
+            if(shape.getClass() == Circle.class)
+                tempList.add(ShapeBuilder.circleOf(shape));
+            if(shape.getClass()== Square.class)
+                tempList.add(ShapeBuilder.squareOf(shape));
+        }
+        return tempList;
+    }
 }
