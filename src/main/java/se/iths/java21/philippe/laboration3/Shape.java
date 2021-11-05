@@ -5,25 +5,26 @@ import javafx.scene.paint.Color;
 
 
 public abstract class Shape {
-    private Color color;
     private final double x;
     private final double y;
     private final double size;
+    private Color color;
 
-
-    public Shape(Color color, double x, double y, double size) {
-        this.color = color;
+    public Shape(double x, double y, double size, Color color) {
         this.x = x;
         this.y = y;
         this.size = size;
+        this.color = color;
     }
 
     public Shape(Shape shape) {
-        this.color = shape.color;
         this.x = shape.x;
         this.y = shape.y;
         this.size = shape.size;
+        this.color = shape.color;
     }
+
+    public abstract Shape copyOf();
 
     public abstract void draw(GraphicsContext graphicsContext);
 
@@ -52,6 +53,5 @@ public abstract class Shape {
     public double getY() {
         return y;
     }
-
 
 }

@@ -8,13 +8,19 @@ public final class Square extends Shape {
 
     private double size;
 
-    public Square(Color color, double x, double y, double size) {
-        super(color, x, y, size);
+    public Square(double x, double y, double size, Color color) {
+        super(x, y, size, color);
         this.size = size;
     }
 
-    public Square(Shape shape) {
+    public Square(Square shape) {
         super(shape);
+        this.size = shape.size;
+    }
+
+    @Override
+    public Shape copyOf() {
+        return new Square(this);
     }
 
     @Override

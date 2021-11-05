@@ -7,13 +7,19 @@ import se.iths.java21.philippe.laboration3.Shape;
 public class Circle extends Shape {
     private double radius;
 
-    public Circle(Color color, double x, double y, double radius) {
-        super(color, x, y, radius);
+    public Circle(double x, double y, double radius, Color color) {
+        super(x, y, radius, color);
         this.radius = radius;
     }
 
-    public Circle(Shape shape) {
+    @Override
+    public Shape copyOf() {
+         return new Circle(this);
+    }
+
+    public Circle(Circle shape) {
         super(shape);
+        this.radius = shape.radius;
     }
 
     @Override
@@ -25,13 +31,11 @@ public class Circle extends Shape {
     @Override
     public String drawSVG() {
         String convertColor = "#" + getColor().toString().substring(2, 10);
-
         return "<circle cx=\"" + getX() + "\" " +
                 "cy=\"" + getY() + "\" " +
                 "r=\"" + getSize() + "\" " +
                 "fill=\"" + convertColor + "\" />";
     }
-
 
     @Override
     public boolean isInside(double x, double y) {

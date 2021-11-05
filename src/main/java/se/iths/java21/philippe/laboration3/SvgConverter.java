@@ -51,5 +51,4 @@ public class SvgConverter {
     private static String endOfSVGString() {
         return "</svg>";
     }
-
 }

@@ -4,8 +4,7 @@ import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
-import se.iths.java21.philippe.laboration3.shapes.Circle;
-import se.iths.java21.philippe.laboration3.shapes.Square;
+
 
 import java.util.*;
 
@@ -45,12 +44,26 @@ public class Model {
     public ObservableList<Shape> getTempList() {
         ObservableList<Shape> tempList = FXCollections.observableArrayList();
 
-        for (Shape shape : shapes) {
-            if(shape.getClass() == Circle.class)
-                tempList.add(ShapeBuilder.circleOf(shape));
-            if(shape.getClass()== Square.class)
-                tempList.add(ShapeBuilder.squareOf(shape));
-        }
+        for (Shape shape : shapes)
+            tempList.add(shape.copyOf());
+
         return tempList;
+    }
+
+    public void undo() {
+        if (undo.isEmpty()) {
+            return;
+        }
+        ObservableList<Shape> temp = getTempList();
+        redo.addLast(temp);
+        shapes = undo.removeLast();
+    }
+
+    public void redo() {
+        if (redo.isEmpty())
+            return;
+        ObservableList<Shape> temp = getTempList();
+        undo.addLast(FXCollections.observableArrayList(temp));
+        shapes = redo.removeLast();
     }
 }

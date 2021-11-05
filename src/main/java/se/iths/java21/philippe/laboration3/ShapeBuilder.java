@@ -8,19 +8,11 @@ import se.iths.java21.philippe.laboration3.shapes.Square;
 public class ShapeBuilder {
 
     public static Shape circleOf(double x, double y, double radius, Color color) {
-        return new Circle(color, x, y, radius);
+        return new Circle(x, y, radius, color);
     }
 
-    public static Shape squareOf(Color color, double x, double y, double size) {
-        return new Square(color,x,y,size);
-    }
-
-    public static Shape circleOf(Shape shape) {
-        return new Circle(shape);
-    }
-
-    public static Shape squareOf(Shape shape) {
-        return new Square(shape);
+    public static Shape squareOf(double x, double y, double size, Color color) {
+        return new Square(x,y,size, color);
     }
 
 }
