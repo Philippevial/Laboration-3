@@ -35,10 +35,8 @@ public class PaintController {
         this.stage = stage;
     }
 
-
     public PaintController() {
     }
-
     public void initialize() {
         model = new Model();
         ToggleGroup group = new ToggleGroup();
